@@ -6,35 +6,52 @@
 //
 
 import UIKit
+import PhotosUI
 
-enum TextField: Int {
+enum TextFieldEnum: Int {
     case noun, adjective, verb
 }
 
-final class ViewController: UIViewController {
+final class ViewController: UIViewController  {
     
     @IBOutlet private var textFieldsCollection: [UITextField]!
     @IBOutlet private weak var numberLabel: UILabel!
     @IBOutlet private weak var numberSlider: UISlider!
+    @IBOutlet private weak var storyPromptImageView: UIImageView!
     
     let storyPrompt = StoryPromptEntry()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         numberSlider.value = 7.5
+        
+        storyPromptImageView.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chageImage))
+        
+        storyPromptImageView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc private func chageImage() {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images
+        configuration.selectionLimit = 1
+        let controller = PHPickerViewController(configuration: configuration)
+        controller.delegate = self
+        present(controller, animated: true, completion: nil)
     }
     
     private func updateStoryPrompt() {
-        storyPrompt.noun = textFieldsCollection[TextField.noun.rawValue].text ?? .init()
-        
-        storyPrompt.adjective = textFieldsCollection[TextField.adjective.rawValue].text ?? .init()
-        
-        storyPrompt.verb = textFieldsCollection[TextField.verb.rawValue].text ?? .init()
+        storyPrompt.noun = textFieldBy(tag: .noun).text ?? .init()
+        storyPrompt.adjective = textFieldBy(tag: .adjective).text ?? .init()
+        storyPrompt.verb = textFieldBy(tag: .verb).text ?? .init()
     }
-
+    
+    private func textFieldBy(tag: TextFieldEnum) -> UITextField {
+        return textFieldsCollection.first(where: {$0.tag == tag.rawValue})!
+    }
+    
     @IBAction private func generateStoryPrompt(_ sender: UIButton) {
         updateStoryPrompt()
-        print(storyPrompt)
     }
     
     @IBAction private func changeNumber(_ sender: UISlider) {
@@ -54,9 +71,38 @@ final class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let tag = TextFieldEnum(rawValue: textField.tag + 1) {
+            textFieldBy(tag: tag).becomeFirstResponder()
+        }
+        
         textField.resignFirstResponder()
-        updateStoryPrompt()
+        
         return true
+    }
+    
+}
+
+extension ViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        if !results.isEmpty {
+            let result = results.first!
+            let itemProvider = result.itemProvider
+            
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                
+                itemProvider.loadObject(ofClass: UIImage.self) {[ weak self] image, error in
+                    
+                    guard let image = image as? UIImage else { return }
+                    
+                    DispatchQueue.main.async {
+                        self?.storyPromptImageView.image = image
+                        self?.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
     
 }
