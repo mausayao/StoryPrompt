@@ -21,16 +21,6 @@ final class ViewController: UIViewController  {
     
     let storyPrompt = StoryPromptEntry()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        numberSlider.value = 7.5
-        
-        storyPromptImageView.isUserInteractionEnabled = true
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chageImage))
-        
-        storyPromptImageView.addGestureRecognizer(gestureRecognizer)
-    }
-    
     @objc private func chageImage() {
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
@@ -68,6 +58,22 @@ final class ViewController: UIViewController  {
     }
 }
 
+//MARK: Life cicle
+extension ViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        numberSlider.value = 7.5
+        
+        storyPromptImageView.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chageImage))
+        
+        storyPromptImageView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+}
+
+//MARK: UITextFieldDelegate
 extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -83,6 +89,7 @@ extension ViewController: UITextFieldDelegate {
     
 }
 
+//MARK: PHPickerViewControllerDelegate
 extension ViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
