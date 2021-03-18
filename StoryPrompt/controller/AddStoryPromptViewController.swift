@@ -42,6 +42,7 @@ final class AddStoryPromptViewController: UIViewController  {
     
     @IBAction private func generateStoryPrompt(_ sender: UIButton) {
         updateStoryPrompt()
+        performSegue(withIdentifier: "StoryPrompSegue", sender: nil)
     }
     
     @IBAction private func changeNumber(_ sender: UISlider) {
@@ -54,6 +55,14 @@ final class AddStoryPromptViewController: UIViewController  {
             storyPrompt.genre = genre
         } else {
             storyPrompt.genre = .scifi
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "StoryPrompSegue" {
+            guard let destination = segue.destination as? StoryPromptViewController else { return }
+            
+            destination.storyPrompt = storyPrompt
         }
     }
 }

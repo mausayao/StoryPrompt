@@ -147,7 +147,7 @@
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Generate Story Prompt"/>
                                                         <connections>
-                                                            <segue destination="Au9-sV-vGn" kind="show" id="YBq-ef-JIZ"/>
+                                                            <action selector="generateStoryPrompt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="auf-T2-aIV"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -190,6 +190,7 @@
                         <outletCollection property="textFieldsCollection" destination="80Z-yG-KSQ" collectionClass="NSMutableArray" id="HBl-n7-edP"/>
                         <outletCollection property="textFieldsCollection" destination="rCF-uJ-1Z5" collectionClass="NSMutableArray" id="GQh-U2-CdB"/>
                         <outletCollection property="textFieldsCollection" destination="PIR-Hj-jxp" collectionClass="NSMutableArray" id="9DV-Mz-C0m"/>
+                        <segue destination="Au9-sV-vGn" kind="show" identifier="StoryPrompSegue" id="R1B-Lm-iq9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
