@@ -12,7 +12,7 @@ enum TextFieldEnum: Int {
     case noun, adjective, verb
 }
 
-final class ViewController: UIViewController  {
+final class AddStoryPromptViewController: UIViewController  {
     
     @IBOutlet private var textFieldsCollection: [UITextField]!
     @IBOutlet private weak var numberLabel: UILabel!
@@ -59,7 +59,7 @@ final class ViewController: UIViewController  {
 }
 
 //MARK: Life cicle
-extension ViewController {
+extension AddStoryPromptViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,7 @@ extension ViewController {
 }
 
 //MARK: UITextFieldDelegate
-extension ViewController: UITextFieldDelegate {
+extension AddStoryPromptViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -90,7 +90,7 @@ extension ViewController: UITextFieldDelegate {
 }
 
 //MARK: PHPickerViewControllerDelegate
-extension ViewController: PHPickerViewControllerDelegate {
+extension AddStoryPromptViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         if !results.isEmpty {
