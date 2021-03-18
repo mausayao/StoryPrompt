@@ -64,4 +64,15 @@ class StoryPromptTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func saveStoryPrompt(unwindSegue: UIStoryboardSegue) {
+        guard let storyPromptViewController = unwindSegue.source as? StoryPromptViewController, let storyPrompt = storyPromptViewController.storyPrompt else { return }
+        
+        storyPrompts.append(storyPrompt)
+        tableView.reloadData()
+    }
+    
+    @IBAction func cancelStoryPrompt(unwindSegue: UIStoryboardSegue) {
+        
+    }
+    
 }
