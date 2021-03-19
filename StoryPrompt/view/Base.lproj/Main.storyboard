@@ -262,29 +262,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="icF-1I-3mj">
-                                <rect key="frame" x="150.5" y="832" width="113" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jW-cb-vDl">
-                                        <rect key="frame" x="0.0" y="0.0" width="53" height="30"/>
-                                        <state key="normal" title="Discard">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelStoryPromp:" destination="Au9-sV-vGn" eventType="touchUpInside" id="IRC-cw-PCO"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsv-uS-EJ7">
-                                        <rect key="frame" x="79" y="0.0" width="34" height="30"/>
-                                        <state key="normal" title="Save">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="nvE-z9-G8p" kind="unwind" unwindAction="saveStoryPromptWithUnwindSegue:" id="tK0-kr-Qnd"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QxU-En-ezz"/>
                         <color key="backgroundColor" red="0.0" green="0.89411764709999997" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -296,14 +273,13 @@
                             <constraint firstItem="nC0-A8-tID" firstAttribute="top" secondItem="QxU-En-ezz" secondAttribute="top" constant="322" id="WWb-oy-tAg"/>
                             <constraint firstItem="Qfu-gV-fuT" firstAttribute="centerX" secondItem="3DM-la-f71" secondAttribute="centerX" id="cMl-Fm-O4k"/>
                             <constraint firstItem="Qfu-gV-fuT" firstAttribute="width" secondItem="QxU-En-ezz" secondAttribute="width" id="gZv-dM-CY2"/>
-                            <constraint firstItem="icF-1I-3mj" firstAttribute="centerX" secondItem="3DM-la-f71" secondAttribute="centerX" id="wid-QP-Lh2"/>
-                            <constraint firstItem="icF-1I-3mj" firstAttribute="bottom" secondItem="QxU-En-ezz" secondAttribute="bottom" id="zMQ-wE-fh3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DaA-9V-Ipe"/>
                     <connections>
                         <outlet property="storyPromptTextView" destination="nC0-A8-tID" id="mMk-nm-C7c"/>
                         <segue destination="nvE-z9-G8p" kind="unwind" identifier="ConcelStoryPrompt" unwindAction="cancelStoryPromptWithUnwindSegue:" id="9I5-7s-vgo"/>
+                        <segue destination="nvE-z9-G8p" kind="unwind" identifier="SaveStoryPrompt" unwindAction="saveStoryPromptWithUnwindSegue:" id="9EC-jD-9sG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwi-F0-98V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

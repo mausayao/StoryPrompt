@@ -13,20 +13,6 @@ class StoryPromptTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let story1 = StoryPromptEntry()
-        let story2 = StoryPromptEntry()
-        
-        story1.adjective = "123"
-        story1.noun = "123444"
-        story1.verb = "adadfsf"
-        
-        story2.adjective = "123"
-        story2.noun = "123444"
-        story2.verb = "adadfsf"
-        
-        
-        storyPrompts = [story1, story2]
     }
 
     // MARK: - Table view data source

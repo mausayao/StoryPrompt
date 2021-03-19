@@ -61,8 +61,9 @@ final class AddStoryPromptViewController: UIViewController  {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "StoryPrompSegue" {
             guard let destination = segue.destination as? StoryPromptViewController else { return }
-            
+           
             destination.storyPrompt = storyPrompt
+            destination.isNewStoryPrompt = true
         }
     }
 }
